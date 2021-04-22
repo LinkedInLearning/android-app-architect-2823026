@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LassDieWuerfelRollen</string>
+    <string name="strFirstDie">Würfel Eins</string>
+    <string name="strSecondDie">Würfel Zwei</string>
+    <string name="strThirdDie">Würfel Drei</string>
+    <string name="strFourthDie">Würfel Vier</string>
+    <string name="strFifthDie">Würfel Fünf</string>
+    <string name="strSixthDie">Würfel Sechs</string>
+    <string name="strRollDice">Würfel</string>
+    <string name="strRollTheDiceToStart">Würfele um zu beginnen</string>
+    <string name="strFiveOfAkind">Fünf Gleiche</string>
+    <string name="strFourOfAkind">Vier Gleiche</string>
+    <string name="strStraight">Straße</string>
+    <string name="strThreeOfAKind">Drei Gleiche</string>
+    <string name="strTwoPairs">Zwei Paare</string>
+    <string name="strFullHouse">Volles Haus</string>
+    <string name="strApair">Ein Paar</string>
+    <string name="strNothingSpecial">Nichts besonderes</string>
+    <string name="strStartRolling">Beginne zu Würfeln</string>
+    <string name="strShareData">Daten teilen</string>
+    <string name="strAbout">Über</string>
+    <string name="strSettings" translatable="false">Einstellungen</string>
+    <string name="strOpenNavDrawer">Öffne den Navigation drawer</string>
+    <string name="strCloseNavDrawer">Schließe den Navigation drawer</string>
+    <string name="strHeadLine">Willkommen</string>
+</resources>

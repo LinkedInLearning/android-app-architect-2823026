@@ -2,9 +2,8 @@ package de.rhistel.lassdiewuerfelrollen.gui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import de.rhistel.lassdiewuerfelrollen.R
-import de.rhistel.lassdiewuerfelrollen.settings.MAIN_ACTIVITY_LIFECYCLE_OBSERVER
+import de.rhistel.lassdiewuerfelrollen.databinding.MainActivityLayoutBinding
 
 /**
  * Einstiegspunkt in die App.
@@ -13,6 +12,9 @@ import de.rhistel.lassdiewuerfelrollen.settings.MAIN_ACTIVITY_LIFECYCLE_OBSERVER
  */
 class MainActivity : AppCompatActivity() {
 
+    //region 1. Decl. and Init
+    private lateinit var binding:MainActivityLayoutBinding
+    //endregion
 
     //region 2. Lebenszyklus
 
@@ -25,59 +27,21 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //1. Setzen des Layouts
-        this.setContentView(R.layout.main_activity_layout)
+        //1. Binding Object erstellen
+        binding = MainActivityLayoutBinding.inflate(this.layoutInflater)
 
-        Log.d(MAIN_ACTIVITY_LIFECYCLE_OBSERVER,"onCreate()")
+        //2. Root Elemente fest legen
+        val rootView = binding.root
 
-    }
+        //3. Setzen des Hauptelementes
+        this.setContentView(rootView)
 
-    /**
-     * 2. Teilweise sichtbarkeit
-     */
-    override fun onStart() {
-        super.onStart()
-        Log.d(MAIN_ACTIVITY_LIFECYCLE_OBSERVER,"onStart()")
-    }
+        //4. Mit Binding arbeiten
+        binding.txtvHeadLine.text = this.getText(R.string.strHello)
 
-    /**
-     * 3. Volle Sichtbarkeit Ausfuehrungszustand
-     */
-    override fun onResume() {
-        super.onResume()
-        Log.d(MAIN_ACTIVITY_LIFECYCLE_OBSERVER,"onResume()")
-    }
 
-    /**
-     * 4. Pausieren der Activity
-     */
-    override fun onPause() {
-        super.onPause()
-        Log.d(MAIN_ACTIVITY_LIFECYCLE_OBSERVER,"onPause()")
-    }
-
-    /**
-     * 5. Stoppen der Activity
-     */
-    override fun onStop() {
-        super.onStop()
-        Log.d(MAIN_ACTIVITY_LIFECYCLE_OBSERVER,"onStop()")
-    }
-
-    /**
-     * 5. a) -> onStart()
-     */
-    override fun onRestart() {
-        super.onRestart()
-        Log.d(MAIN_ACTIVITY_LIFECYCLE_OBSERVER,"onRestart()")
-    }
-
-    /**
-     * 6. Activity loeschen
-     */
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(MAIN_ACTIVITY_LIFECYCLE_OBSERVER,"onDestroy()")
+        //Lifecycle Observer mit der MainActivity bekannt machen
+        this.lifecycle.addObserver(MainActivityLifecycleObserver())
     }
 
     //endregion

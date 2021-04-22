@@ -18,7 +18,7 @@
 	<string name="strNothingSpecial">Nothing Special</string>
 	<string name="strStartRolling">Start rolling</string>
 	<string name="strShareData">Share data</string>
-	<string name="strLoremIpsum">Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+	<string name="strLoremIpsum" translatable="false">Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
         sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
         ed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
         Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
@@ -38,4 +38,6 @@
 	<string name="strSettings">Settings</string>
 	<string name="strOpenNavDrawer">Open Navigation drawer</string>
 	<string name="strCloseNavDrawer">Close Navigation drawer</string>
+	<string name="strHeadLine">Welcome :D</string>
+	<string name="strHello">Hallo</string>
 </resources>
