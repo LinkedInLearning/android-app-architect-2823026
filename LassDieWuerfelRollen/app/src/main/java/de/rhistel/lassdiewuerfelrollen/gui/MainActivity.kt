@@ -1,7 +1,9 @@
 package de.rhistel.lassdiewuerfelrollen.gui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import de.rhistel.lassdiewuerfelrollen.R
 import de.rhistel.lassdiewuerfelrollen.databinding.MainActivityLayoutBinding
 
@@ -12,8 +14,8 @@ import de.rhistel.lassdiewuerfelrollen.databinding.MainActivityLayoutBinding
  */
 class MainActivity : AppCompatActivity() {
 
-    //region 1. Decl. and Init
-    private lateinit var binding:MainActivityLayoutBinding
+    //region 1. Decl. and Init Attribute / Widgets
+    private lateinit var binding: MainActivityLayoutBinding
     //endregion
 
     //region 2. Lebenszyklus
@@ -39,10 +41,25 @@ class MainActivity : AppCompatActivity() {
         //4. Mit Binding arbeiten
         binding.txtvHeadLine.text = this.getText(R.string.strHello)
 
+        //5. Listenerhandling
+        binding.btnStartRolling.setOnClickListener { startDiceActivity() }
 
-        //Lifecycle Observer mit der MainActivity bekannt machen
+        //6. Lifecycle Observer mit der MainActivity bekannt machen
         this.lifecycle.addObserver(MainActivityLifecycleObserver())
     }
 
+
+
+    //endregion
+
+    //region 3. Klickhandling
+
+    private fun startDiceActivity() {
+        //Explizites Intent (Aufrufer MainActivity, Zielactivity DiceActivity)
+        val intentStartDiceActivity = Intent(this, DiceActivity::class.java)
+
+        //Starten
+        this.startActivity(intentStartDiceActivity)
+    }
     //endregion
 }

@@ -24,4 +24,5 @@
     <string name="strOpenNavDrawer">Öffne den Navigation drawer</string>
     <string name="strCloseNavDrawer">Schließe den Navigation drawer</string>
     <string name="strHeadLine">Willkommen</string>
+    <string name="strHello">Hallo</string>
 </resources>
