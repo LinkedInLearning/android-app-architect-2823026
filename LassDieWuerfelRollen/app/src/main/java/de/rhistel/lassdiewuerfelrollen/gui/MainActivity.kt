@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import de.rhistel.lassdiewuerfelrollen.R
-import de.rhistel.lassdiewuerfelrollen.settings.MAIN_ACTIVITY_TAG
+import de.rhistel.lassdiewuerfelrollen.settings.MAIN_ACTIVITY_LIFECYCLE_OBSERVER
 
 /**
  * Einstiegspunkt in die App.
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         //1. Setzen des Layouts
         this.setContentView(R.layout.main_activity_layout)
 
-        Log.d(MAIN_ACTIVITY_TAG,"onCreate()")
+        Log.d(MAIN_ACTIVITY_LIFECYCLE_OBSERVER,"onCreate()")
 
     }
 
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
      */
     override fun onStart() {
         super.onStart()
-        Log.d(MAIN_ACTIVITY_TAG,"onStart()")
+        Log.d(MAIN_ACTIVITY_LIFECYCLE_OBSERVER,"onStart()")
     }
 
     /**
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
      */
     override fun onResume() {
         super.onResume()
-        Log.d(MAIN_ACTIVITY_TAG,"onResume()")
+        Log.d(MAIN_ACTIVITY_LIFECYCLE_OBSERVER,"onResume()")
     }
 
     /**
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
      */
     override fun onPause() {
         super.onPause()
-        Log.d(MAIN_ACTIVITY_TAG,"onPause()")
+        Log.d(MAIN_ACTIVITY_LIFECYCLE_OBSERVER,"onPause()")
     }
 
     /**
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
      */
     override fun onStop() {
         super.onStop()
-        Log.d(MAIN_ACTIVITY_TAG,"onStop()")
+        Log.d(MAIN_ACTIVITY_LIFECYCLE_OBSERVER,"onStop()")
     }
 
     /**
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
      */
     override fun onRestart() {
         super.onRestart()
-        Log.d(MAIN_ACTIVITY_TAG,"onRestart()")
+        Log.d(MAIN_ACTIVITY_LIFECYCLE_OBSERVER,"onRestart()")
     }
 
     /**
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
      */
     override fun onDestroy() {
         super.onDestroy()
-        Log.d(MAIN_ACTIVITY_TAG,"onDestroy()")
+        Log.d(MAIN_ACTIVITY_LIFECYCLE_OBSERVER,"onDestroy()")
     }
 
     //endregion
