@@ -2,7 +2,9 @@ package de.rhistel.lassdiewuerfelrollen.gui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import de.rhistel.lassdiewuerfelrollen.R
+import de.rhistel.lassdiewuerfelrollen.settings.MAIN_ACTIVITY_TAG
 
 /**
  * Einstiegspunkt in die App.
@@ -10,14 +12,12 @@ import de.rhistel.lassdiewuerfelrollen.R
  *
  */
 class MainActivity : AppCompatActivity() {
-    //region 0. Konstanten
 
-    //endregion
 
     //region 2. Lebenszyklus
 
     /**
-     * In dieser Methode wird das Layout entfaltet.
+     * 1. In dieser Methode wird das Layout entfaltet.
      * Sie wird immer als erstes aufgerufen. Die Activity
      * ist zu diesem Zeitpunkt noch nicht sichtbar.
      * @param savedInstanceState [Bundle] - Zwischenspeicherungsobjekt
@@ -28,7 +28,57 @@ class MainActivity : AppCompatActivity() {
         //1. Setzen des Layouts
         this.setContentView(R.layout.main_activity_layout)
 
+        Log.d(MAIN_ACTIVITY_TAG,"onCreate()")
 
     }
+
+    /**
+     * 2. Teilweise sichtbarkeit
+     */
+    override fun onStart() {
+        super.onStart()
+        Log.d(MAIN_ACTIVITY_TAG,"onStart()")
+    }
+
+    /**
+     * 3. Volle Sichtbarkeit Ausfuehrungszustand
+     */
+    override fun onResume() {
+        super.onResume()
+        Log.d(MAIN_ACTIVITY_TAG,"onResume()")
+    }
+
+    /**
+     * 4. Pausieren der Activity
+     */
+    override fun onPause() {
+        super.onPause()
+        Log.d(MAIN_ACTIVITY_TAG,"onPause()")
+    }
+
+    /**
+     * 5. Stoppen der Activity
+     */
+    override fun onStop() {
+        super.onStop()
+        Log.d(MAIN_ACTIVITY_TAG,"onStop()")
+    }
+
+    /**
+     * 5. a) -> onStart()
+     */
+    override fun onRestart() {
+        super.onRestart()
+        Log.d(MAIN_ACTIVITY_TAG,"onRestart()")
+    }
+
+    /**
+     * 6. Activity loeschen
+     */
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(MAIN_ACTIVITY_TAG,"onDestroy()")
+    }
+
     //endregion
 }
