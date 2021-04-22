@@ -1,0 +1,41 @@
+<resources>
+	<string name="app_name">LassDieWuerfelRollen</string>
+	<string name="strFirstDie">First Die</string>
+	<string name="strSecondDie">Second Die</string>
+	<string name="strThirdDie">Third Die</string>
+	<string name="strFourthDie">Forth Die</string>
+	<string name="strFifthDie">Fifth Die</string>
+	<string name="strSixthDie">Sixth Die</string>
+	<string name="strRollDice">Roll dice</string>
+	<string name="strRollTheDiceToStart">Roll the dice to start</string>
+	<string name="strFiveOfAkind">Five of a kind</string>
+	<string name="strFourOfAkind">Four of a kind</string>
+	<string name="strFullHouse">Full house</string>
+	<string name="strStraight">Straight</string>
+	<string name="strThreeOfAKind">Three of a kind</string>
+	<string name="strTwoPairs">Two Pairs</string>
+	<string name="strApair">A Pair</string>
+	<string name="strNothingSpecial">Nothing Special</string>
+	<string name="strStartRolling">Start rolling</string>
+	<string name="strShareData">Share data</string>
+	<string name="strLoremIpsum">Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+        ed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+        tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+        no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet,
+        consetetur sadipscing elitr,sed diam nonumy eirmod tempor invidunt ut labore et dolore
+        magna aliquyam erat, ed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+        tempor invidunt ut labore et dolore magna aliquyam erat, sed diFam voluptua.
+        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+        no sea takimata sanctus est Lorem ipsum dolor sit amet.
+    </string>
+	<string name="strAbout">About</string>
+	<string name="strSettings">Settings</string>
+	<string name="strOpenNavDrawer">Open Navigation drawer</string>
+	<string name="strCloseNavDrawer">Close Navigation drawer</string>
+</resources>
