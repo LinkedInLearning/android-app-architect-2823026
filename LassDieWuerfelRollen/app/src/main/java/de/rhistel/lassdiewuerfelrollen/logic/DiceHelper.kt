@@ -10,11 +10,29 @@ import kotlin.random.Random
 /**
  * Diese Klasse uebernimmt
  * das Wurfeln in dem fuer
- * alle 5 Wurfel eine zufaellige
+ * alle 5 Wurfel eine zufaellig
  * Augenanzahl generiert wird.
- * Anschließend wird das Ergebnis ausgewertet.
+ * Anschließend wird das Ergebnis ausgewertet,
+ * in jeder Wuerfel mit seiner Augenanzahl zugeordnet
+ * wird und anschließend wird dieses verglichen.
+ *
+ * Es ist zu bemerken das diese Logik hier modular
+ * aufgebaut ist. Das eigentliche triggern wird ueber
+ * den Buttonklick auf der Oberflaeche und danach ueber
+ * das ViewModel durchgefuehrt. Dort wird zuerst das Wuerfeln
+ * und dann das Auswerten angesteuert.
  */
 class DiceHelper {
+
+    /**
+     * Das Compainion Object erlaubt
+     * einen statischen Zugriff auf alle
+     * inneren Methoden und Funktionen.
+     * Dadruch ist keine Objektbindung
+     * vorhanden und es kann alles
+     * ueber den Klassennamen [DiceHelper]
+     * mit dem Punktoperator angesprochen werden.
+     */
     companion object {
 
         /**
@@ -34,10 +52,8 @@ class DiceHelper {
          * Diese Funktion wird im ViewModel aufgerufen nach dem der Button
          * in der DiceActivity geklickt wurde.
          *
-         * @return [IntArray] - mit 5 zufaelligen Werten- je Wuerfel einer
-         *
-         *
-         *
+         * @return dicePips [IntArray] - mit 5 zufaelligen Augen- je Wuerfel
+         * Ein Element in dem Array Repreaesentiert ein Wuerfel
          */
         fun rollDice(): IntArray {
             return intArrayOf(
@@ -52,17 +68,26 @@ class DiceHelper {
 
         /**
          * Hier wird das Ergebnis des Wuerfelns ausgewertet
-         * @param context : [Context] : Akutelle ActvityReferenz hier die [DiceActvity]
-         * um an die Strings aus der strings.xml dran zukommen
+         *
+         *
+         *
          * Nach dem Aufruf von [rollDice] im ViewModel wird direkt im Anschluss
          * diese Funktion aufgerufen, welche die Zahlen Auswertet und das Ergebnis
          * als String dem ViewModel zurueck liefert, da dieses mit der [DiceActivity]
          * verbunden ist wird das Ergebnis auf der Gui ausgegeben.
-         * @param allDice : [IntArray] : WuerfelArray
+         *
+         *  @param context : [Context] : Akutelle ActvityReferenz hier die [DiceActvity]
+         * um an die Strings aus der strings.xml dran zukommen
+         *
+         * @param allDicePips : [IntArray] : WuerfelArray geeriert durch [rollDice] getriggert
+         * im ViewModel
+         *
+         * @return rollResult : [String] : Ergebnis des Wurfes wird ans ViewModel zurueckgeliefert
+         * und dadruch auf der Gui geupdated
          */
-        fun evaluateDice(context: Context, allDice: IntArray?): String {
+        fun evaluateDice(context: Context, allDicePips: IntArray?): String {
 
-            //Veraenderbare Map zu speichern der Auswertung
+            //Mappen der Wuerfel zu Augenanzahl fuer die untere Auswetung
             val diceToRolledPips = mutableMapOf(
                 Pair(1, 0),
                 Pair(2, 0),
@@ -73,11 +98,11 @@ class DiceHelper {
             )
 
             //Zuordnen der Augenzahl zum Wuerfel
-            for (currentDie in allDice!!.indices) {
+            for (pipsOfCurrentDie in allDicePips!!.indices) {
 
-                val currentCount = diceToRolledPips.getOrElse(allDice[currentDie]) { 0 }
+                val currentCount = diceToRolledPips.getOrElse(allDicePips[pipsOfCurrentDie]) { 0 }
 
-                diceToRolledPips[allDice[currentDie]] = currentCount + 1
+                diceToRolledPips[allDicePips[pipsOfCurrentDie]] = currentCount + 1
             }
 
             //Auswerten des Ergebnisses
@@ -91,7 +116,7 @@ class DiceHelper {
                 isFullHouse(diceToRolledPips) ->
                     context.getString(R.string.strFullHouse)
 
-                isStraight(allDice) ->
+                isStraight(allDicePips) ->
                     context.getString(R.string.strStraight)
 
                 diceToRolledPips.containsValue(THREE_OF_KIND) ->
@@ -143,16 +168,16 @@ class DiceHelper {
 
         /**
          * Ueberpreuft ob eine Straße geworfen wurde
-         * @param allDice [IntArray] : Wuerfel
+         * @param allDicePips [IntArray] : Wuerfel
          * @return true - Strasse - false keine Strasse
          */
-        private fun isStraight(allDice: IntArray): Boolean {
+        private fun isStraight(allDicePips: IntArray): Boolean {
             return (
-                    (allDice.contains(ONE_PIP) || allDice.contains(SIX_PIPS)) && (
-                            allDice.contains(TWO_PIPS) &&
-                                    allDice.contains(THREE_PIPS) &&
-                                    allDice.contains(FOUR_PIPS) &&
-                                    allDice.contains(FIVE_PIPS)
+                    (allDicePips.contains(ONE_PIP) || allDicePips.contains(SIX_PIPS)) && (
+                            allDicePips.contains(TWO_PIPS) &&
+                                    allDicePips.contains(THREE_PIPS) &&
+                                    allDicePips.contains(FOUR_PIPS) &&
+                                    allDicePips.contains(FIVE_PIPS)
                             )
                     )
         }
