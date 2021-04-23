@@ -5,26 +5,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DiceActivity"
+    tools:context=".gui.DiceActivity"
     android:orientation="vertical">
 
 
     <TextView
-        android:text="@string/strRollTheDiceToStart"
+        android:id="@+id/txtvRollResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtvRollResult"
-        android:textSize="36sp"
+        android:layout_marginStart="@dimen/defaultMargin"
+        android:layout_marginTop="@dimen/defaultMargin"
+        android:layout_marginEnd="@dimen/defaultMargin"
+        android:layout_marginBottom="@dimen/defaultMargin"
+        android:text="@string/strRollTheDiceToStart"
+        android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:textAlignment="center"/>
+        android:textSize="36sp" />
 
     <Button
-        android:text="@string/strRollDice"
+        android:id="@+id/btnRollTheDice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnRollDice"
-        android:textAllCaps="false"
-        android:textSize="36sp"/>
+        android:layout_marginStart="@dimen/defaultMargin"
+        android:layout_marginTop="@dimen/defaultMargin"
+        android:layout_marginEnd="@dimen/defaultMargin"
+        android:layout_marginBottom="@dimen/defaultMargin"
+        android:text="@string/strRollDice"
+        android:textSize="36sp" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -33,49 +40,49 @@
         android:id="@+id/linLayoutDice">
 
         <ImageView
+            android:id="@+id/imgvFirstDie"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            app:srcCompat="@drawable/one_pip"
-            android:id="@+id/imgvFirstDie"
+            android:layout_marginStart="@dimen/dieMargin"
             android:layout_weight="1"
             android:contentDescription="@string/strFirstDie"
-            android:layout_marginStart="10dp"/>
+            app:srcCompat="@drawable/six_pips" />
 
         <ImageView
+            android:id="@+id/imgvSecondDie"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            app:srcCompat="@drawable/two_pips"
-            android:id="@+id/imgvSecondDie"
+            android:layout_marginStart="@dimen/dieMargin"
             android:layout_weight="1"
             android:contentDescription="@string/strSecondDie"
-            android:layout_marginStart="10dp"/>
+            app:srcCompat="@drawable/six_pips" />
 
         <ImageView
+            android:id="@+id/imgvThirdDie"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            app:srcCompat="@drawable/three_pips"
-            android:id="@+id/imgvThirdDie"
+            android:layout_marginStart="@dimen/dieMargin"
             android:layout_weight="1"
             android:contentDescription="@string/strThirdDie"
-            android:layout_marginStart="10dp"/>
+            app:srcCompat="@drawable/six_pips" />
 
         <ImageView
+            android:id="@+id/imgvFourthDie"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            app:srcCompat="@drawable/four_pips"
-            android:id="@+id/imgvFourthDie"
+            android:layout_marginStart="@dimen/dieMargin"
             android:layout_weight="1"
             android:contentDescription="@string/strFourthDie"
-            android:layout_marginStart="10dp"/>
+            app:srcCompat="@drawable/six_pips" />
 
         <ImageView
+            android:id="@+id/imgvFifthDie"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            app:srcCompat="@drawable/five_pips"
-            android:id="@+id/imgvFifthDie"
+            android:layout_marginStart="@dimen/dieMargin"
             android:layout_weight="1"
             android:contentDescription="@string/strFifthDie"
-            android:layout_marginStart="10dp"/>
+            app:srcCompat="@drawable/six_pips" />
 
     </LinearLayout>
 
