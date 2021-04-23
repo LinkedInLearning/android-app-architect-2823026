@@ -44,6 +44,20 @@ class DiceActivity : AppCompatActivity() {
 			this.findViewById(R.id.imgvFifthDie)
 		)
 	}
+
+	/**
+	 * Akuteller Wurf beim Start
+	 * der Activity der Standardwert
+	 * von auschließlich sechsen.
+	 * Reorientierung des Bildschirms
+	 * der letzte Wurf.
+	 */
+	private lateinit var currentSetOfDice: IntArray
+
+	/**
+	 * Aktueller Text in [txtvRollResult] angezeigt wird.
+	 */
+	private lateinit var currentRollResult: String
 	//endregion
 
 	//region 2. Lebenszyklus
@@ -57,25 +71,74 @@ class DiceActivity : AppCompatActivity() {
 		//1. Layout setzen
 		this.setContentView(R.layout.dice_activity_layout)
 
+		/*
+		 * 2.
+		 * Bei Reorientierung das Wurfergebnis und aktueller Wurf wiederherstellen
+		 * Beim ersten Start der Activity werden die Standardwerte eingetragen
+		 */
+
+		this.currentRollResult = savedInstanceState?.getString(CURRENT_ROLL_RESULT)
+			?: this.getString(R.string.strRollTheDiceToStart)
+
+		this.currentSetOfDice = savedInstanceState?.getIntArray(CURRENT_SET_OF_DICE)
+			?: this.resources.getIntArray(R.array.defaultSetOfDice)
+
+		//3.Daten in der Gui eintragne
+		this.showCurrentSetOfDiceAndResultOnGui()
+
+		//4. Listener setzen
+		this.btnRollTheDice.setOnClickListener { rollTheDice() }
+
+	}
+
+	/**
+	 * Merkt sich die aktuellen GuiDaten
+	 * wird automatisch von Android aufgerufen
+	 */
+	override fun onSaveInstanceState(outState: Bundle) {
+
+		//Akutelle Gui Daten zumerken in outState Bundele MapSchreiben
+		outState.putIntArray(CURRENT_SET_OF_DICE, this.currentSetOfDice)
+		outState.putString(CURRENT_ROLL_RESULT, this.currentRollResult)
+
+		//Android outState uebergeben
+		super.onSaveInstanceState(outState)
 	}
 	//endregion
-
 
 	//region 3. Klickhandling
 	/**
 	 * Diese Methode Wuerfelt und zeigt das
 	 * Ergebnis des Wurfes auf [txtvRollResult] an.
 	 */
-	fun onClickRollTheDice() {
+	fun rollTheDice() {
 
 		//Wuerfeln zufaellige Augenzahl
-		val allDice = DiceHelper.rollDice();
+		this.currentSetOfDice = DiceHelper.rollDice();
 
+		//Wurfergebnis auswerten
+		this.currentRollResult = DiceHelper.evaluateDice(this, currentSetOfDice);
+
+		//Wurf und Ergebnis auf der Gui updaten
+		this.showCurrentSetOfDiceAndResultOnGui()
+
+
+	}
+	//endregion
+
+	//region 4. Hilfsmethoden und Funktionen
+
+	/**
+	 * Zeigt das den akutellen Wurf und  das Ergbnis dessen an.
+	 * Entweder direkt nach dem Wuerfeln in [rollTheDice] oder
+	 * nach einer Reorientierung in [onCreate].
+	 */
+	fun showCurrentSetOfDiceAndResultOnGui() {
 		//Alle ImageViews und Wuerfel durchlaufen beide Arrays sind gleich groß
 		for (index in this.imgvsDice.indices) {
 
 			//Akutelle Augenzahl auswerten und passende BildId zuordnen
-			val matchingPipDrawableId = when (allDice[index]) {
+			val matchingPipDrawableId = when (currentSetOfDice[index]) {
 				ONE_PIP -> R.drawable.one_pip
 				TWO_PIPS -> R.drawable.two_pips
 				THREE_PIPS -> R.drawable.three_pips
@@ -90,8 +153,7 @@ class DiceActivity : AppCompatActivity() {
 
 		}
 
-		//Wurergebenis anzeigen
-		this.txtvRollResult.text = DiceHelper.evaluateDice(this,allDice);
+		//Wurfergebnis anzeigen
+		this.txtvRollResult.text = this.currentRollResult
 	}
-	//endregion
 }
