@@ -38,10 +38,7 @@ class MainActivity : AppCompatActivity() {
         //3. Setzen des Hauptelementes
         this.setContentView(rootView)
 
-        //4. Mit Binding arbeiten
-        binding.txtvHeadLine.text = this.getText(R.string.strHello)
-
-        //5. Listenerhandling
+        //4. Mit Binding arbeiten, Listenerhandling
         binding.btnStartRolling.setOnClickListener { startDiceActivity() }
 
         //6. Lifecycle Observer mit der MainActivity bekannt machen
