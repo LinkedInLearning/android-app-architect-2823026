@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LassDieWuerfelRollen">
-        <activity android:name=".gui.DiceActivity"
-            android:parentActivityName=".gui.MainActivity"></activity>
-        <activity android:name=".gui.MainActivity">
+        <activity android:name=".gui.activities.DiceActivity"
+            android:parentActivityName=".gui.activities.MainActivity"></activity>
+        <activity android:name=".gui.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

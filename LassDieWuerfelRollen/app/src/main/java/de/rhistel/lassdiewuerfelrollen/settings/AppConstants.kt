@@ -1,8 +1,12 @@
 package de.rhistel.lassdiewuerfelrollen.settings
 
 const val LIFECYCLE_OBSERVER_TAG = "LifecycleObserver"
+const val DICE_VIEW_MODEL_TAG = "LifecycleObserver"
+
 const val CURRENT_SET_OF_DICE = "currentSetOfDice"
 const val CURRENT_ROLL_RESULT = "currentRollResult"
+
+const val CONFIG_CHANGE = "configChange"
 
 const val FIVE_OF_A_KIND = 5
 const val FOUR_OF_A_KIND = 4

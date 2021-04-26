@@ -1,8 +1,7 @@
-package de.rhistel.lassdiewuerfelrollen.gui
+package de.rhistel.lassdiewuerfelrollen.gui.observer
 
 import android.util.Log
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import de.rhistel.lassdiewuerfelrollen.settings.LIFECYCLE_OBSERVER_TAG

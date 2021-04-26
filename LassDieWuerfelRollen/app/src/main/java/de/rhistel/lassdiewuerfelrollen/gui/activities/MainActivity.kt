@@ -1,11 +1,10 @@
-package de.rhistel.lassdiewuerfelrollen.gui
+package de.rhistel.lassdiewuerfelrollen.gui.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import de.rhistel.lassdiewuerfelrollen.R
 import de.rhistel.lassdiewuerfelrollen.databinding.MainActivityLayoutBinding
+import de.rhistel.lassdiewuerfelrollen.gui.observer.MainActivityLifecycleObserver
 
 /**
  * Einstiegspunkt in die App.

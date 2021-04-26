@@ -1,11 +1,15 @@
-package de.rhistel.lassdiewuerfelrollen.gui
+package de.rhistel.lassdiewuerfelrollen.gui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import de.rhistel.lassdiewuerfelrollen.R
+import de.rhistel.lassdiewuerfelrollen.gui.viewModel.DiceActivityViewModel
 import de.rhistel.lassdiewuerfelrollen.logic.DiceHelper
 import de.rhistel.lassdiewuerfelrollen.settings.*
 
@@ -45,19 +49,13 @@ class DiceActivity : AppCompatActivity() {
 		)
 	}
 
-	/**
-	 * Akuteller Wurf beim Start
-	 * der Activity der Standardwert
-	 * von auschließlich sechsen.
-	 * Reorientierung des Bildschirms
-	 * der letzte Wurf.
-	 */
-	private lateinit var currentSetOfDice: IntArray
 
 	/**
-	 * Aktueller Text in [txtvRollResult] angezeigt wird.
+	 * Dieses Attribut wird genutzt um das Wuerfeln und dessen
+	 * Ergebnisauswertung zu zentralisieren. Bitte die Dokumentationslinks
+	 * in der Klasse [DiceActivityViewModel] beachten
 	 */
-	private lateinit var currentRollResult: String
+	private lateinit var diceActivityViewModel: DiceActivityViewModel;
 	//endregion
 
 	//region 2. Lebenszyklus
@@ -71,24 +69,32 @@ class DiceActivity : AppCompatActivity() {
 		//1. Layout setzen
 		this.setContentView(R.layout.dice_activity_layout)
 
+		//2.ViewModel generieren
+		this.diceActivityViewModel = ViewModelProvider(this).get(DiceActivityViewModel::class.java)
+
+		//3. Zu ueberwachenden Werte des View Models registrieren
+		this.diceActivityViewModel.currentSetOfDice.observe(
+			this,
+			Observer { this.showCurrentSetOfDiceAndResultOnGui(it) })
+
+		this.diceActivityViewModel.currentRollResult.observe(
+			this,
+			Observer { txtvRollResult.text = it })
+
+		val configChange = savedInstanceState?.getBoolean(CONFIG_CHANGE)
+			?: false
+
 		/*
-		 * 2.
-		 * Bei Reorientierung das Wurfergebnis und aktueller Wurf wiederherstellen
-		 * Beim ersten Start der Activity werden die Standardwerte eingetragen
+		 * Wenn eine Reorientuerung stattgefunden hat
+		 * saveInstanceState nutzen um das zu checken
+		 * Die Daten werden weiterhin vom ViewModel gehandelt
 		 */
+		if (configChange.not()) {
+			this.diceActivityViewModel.rollAndEvaluateDice()
+		}
 
-		this.currentRollResult = savedInstanceState?.getString(CURRENT_ROLL_RESULT)
-			?: this.getString(R.string.strRollTheDiceToStart)
-
-		this.currentSetOfDice = savedInstanceState?.getIntArray(CURRENT_SET_OF_DICE)
-			?: this.resources.getIntArray(R.array.defaultSetOfDice)
-
-		//3.Daten in der Gui eintragne
-		this.showCurrentSetOfDiceAndResultOnGui()
-
-		//4. Listener setzen
-		this.btnRollTheDice.setOnClickListener { rollTheDice() }
-
+		//4. Listener zuweisen Wuerfeln ist jetzt im ViewModel
+		this.btnRollTheDice.setOnClickListener { this.diceActivityViewModel.rollAndEvaluateDice() }
 
 
 	}
@@ -100,8 +106,7 @@ class DiceActivity : AppCompatActivity() {
 	override fun onSaveInstanceState(outState: Bundle) {
 
 		//Akutelle Gui Daten zumerken in outState Bundele MapSchreiben
-		outState.putIntArray(CURRENT_SET_OF_DICE, this.currentSetOfDice)
-		outState.putString(CURRENT_ROLL_RESULT, this.currentRollResult)
+		outState.putBoolean(CONFIG_CHANGE, true)
 
 //		Android outState uebergeben
 		super.onSaveInstanceState(outState)
@@ -109,23 +114,6 @@ class DiceActivity : AppCompatActivity() {
 	//endregion
 
 	//region 3. Klickhandling
-	/**
-	 * Diese Methode Wuerfelt und zeigt das
-	 * Ergebnis des Wurfes auf [txtvRollResult] an.
-	 */
-	fun rollTheDice() {
-
-		//Wuerfeln zufaellige Augenzahl
-		this.currentSetOfDice = DiceHelper.rollDice();
-
-		//Wurfergebnis auswerten
-		this.currentRollResult = DiceHelper.evaluateDice(this, currentSetOfDice);
-
-		//Wurf und Ergebnis auf der Gui updaten
-		this.showCurrentSetOfDiceAndResultOnGui()
-
-
-	}
 	//endregion
 
 	//region 4. Hilfsmethoden und Funktionen
@@ -134,8 +122,9 @@ class DiceActivity : AppCompatActivity() {
 	 * Zeigt das den akutellen Wurf und  das Ergbnis dessen an.
 	 * Entweder direkt nach dem Wuerfeln in [rollTheDice] oder
 	 * nach einer Reorientierung in [onCreate].
+	 * Das Wuerfeln wird nun ueber das DiceActivityViewModel gesteuert.
 	 */
-	fun showCurrentSetOfDiceAndResultOnGui() {
+	fun showCurrentSetOfDiceAndResultOnGui(currentSetOfDice: IntArray) {
 
 		//Alle ImageViews und Wuerfel durchlaufen beide Arrays sind gleich groß
 		for (index in this.imgvsDice.indices) {
@@ -156,7 +145,5 @@ class DiceActivity : AppCompatActivity() {
 
 		}
 
-		//Wurfergebnis anzeigen
-		this.txtvRollResult.text = this.currentRollResult
 	}
 }
