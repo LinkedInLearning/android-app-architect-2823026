@@ -89,6 +89,8 @@ class DiceActivity : AppCompatActivity() {
 		//4. Listener setzen
 		this.btnRollTheDice.setOnClickListener { rollTheDice() }
 
+
+
 	}
 
 	/**
@@ -101,7 +103,7 @@ class DiceActivity : AppCompatActivity() {
 		outState.putIntArray(CURRENT_SET_OF_DICE, this.currentSetOfDice)
 		outState.putString(CURRENT_ROLL_RESULT, this.currentRollResult)
 
-		//Android outState uebergeben
+//		Android outState uebergeben
 		super.onSaveInstanceState(outState)
 	}
 	//endregion
@@ -134,6 +136,7 @@ class DiceActivity : AppCompatActivity() {
 	 * nach einer Reorientierung in [onCreate].
 	 */
 	fun showCurrentSetOfDiceAndResultOnGui() {
+
 		//Alle ImageViews und Wuerfel durchlaufen beide Arrays sind gleich groß
 		for (index in this.imgvsDice.indices) {
 
