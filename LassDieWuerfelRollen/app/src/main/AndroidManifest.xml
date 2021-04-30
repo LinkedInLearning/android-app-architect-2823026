@@ -9,15 +9,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LassDieWuerfelRollen">
-        <activity android:name=".gui.activities.DiceActivity"
-            android:parentActivityName=".gui.activities.MainActivity"></activity>
-        <activity android:name=".gui.activities.MainActivity">
+
+        <activity android:name=".gui.activites.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".gui.activites.DiceActivity"
+            android:parentActivityName=".gui.activites.MainActivity" />
+
+        <activity
+            android:name=".gui.activites.HelpActivity"
+            android:label="@string/strHelp"
+            android:theme="@style/Theme.LassDieWuerfelRollen.NoActionBar" />
+
+        <activity
+            android:name=".gui.activites.AboutUsActivity"
+            android:label="@string/strAboutUs"
+            android:parentActivityName=".gui.activites.HelpActivity" />
     </application>
 
 </manifest>

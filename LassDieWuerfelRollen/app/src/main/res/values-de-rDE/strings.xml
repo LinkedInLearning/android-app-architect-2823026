@@ -20,9 +20,13 @@
     <string name="strStartRolling">Beginne zu Würfeln</string>
     <string name="strShareData">Daten teilen</string>
     <string name="strAbout">Über</string>
-    <string name="strSettings" translatable="false">Einstellungen</string>
-    <string name="strOpenNavDrawer">Öffne den Navigation drawer</string>
-    <string name="strCloseNavDrawer">Schließe den Navigation drawer</string>
     <string name="strHeadLine">Willkommen</string>
-    <string name="strHello">Hallo</string>
+    <string name="strFormatPossibleRollResults">Folgende Wurferbnisse sind möglich: %s %s %s %s %s %s %s %s</string>
+    <string name="strHelp">Hilfe</string>
+    <string name="strOpenTheNavigationDrawer">Navigation drawer öffnen</string>
+    <string name="strCloseNavigationDrawer">Naviagtion drawer schließen</string>
+    <string name="strAboutUs">Über uns</string>
+    <string name="strHelpActivityHomeFragmentHowToNavigate">Um den Navigation drawer zu öffnen,
+        klicken Sie bitte oben links auf das Burger-Menu-Icon. Wenn Sie sehem möchten wer diese
+        App entwicklet hat, klicken Sie auf das Info-Icon oben rechts in der Ecke.</string>
 </resources>

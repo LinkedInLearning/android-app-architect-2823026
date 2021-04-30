@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navItemHome">
+
+    <fragment
+        android:id="@+id/navItemHome"
+        android:name="de.rhistel.lassdiewuerfelrollen.gui.fragments.HelpActivityHomeFragment"
+        android:label="@string/strHome"
+        tools:layout="@layout/help_activity_home_fragment_layout" />
+
+    <fragment
+        android:id="@+id/navItemPossibleRollResults"
+        android:name="de.rhistel.lassdiewuerfelrollen.gui.fragments.HelpActivityPossibleRollResultsFragment"
+        android:label="@string/strPossibleRollResults"
+        tools:layout="@layout/help_activity_possible_roll_results_fragment_layout" />
+
+</navigation>

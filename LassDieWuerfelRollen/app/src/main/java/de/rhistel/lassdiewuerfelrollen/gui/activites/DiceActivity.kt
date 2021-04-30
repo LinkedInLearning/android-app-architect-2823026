@@ -1,16 +1,14 @@
-package de.rhistel.lassdiewuerfelrollen.gui.activities
+package de.rhistel.lassdiewuerfelrollen.gui.activites
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import de.rhistel.lassdiewuerfelrollen.R
 import de.rhistel.lassdiewuerfelrollen.gui.viewModel.DiceActivityViewModel
-import de.rhistel.lassdiewuerfelrollen.logic.DiceHelper
+//import androidx.activity.viewModels
 import de.rhistel.lassdiewuerfelrollen.settings.*
 
 /**
@@ -55,7 +53,7 @@ class DiceActivity : AppCompatActivity() {
 	 * Ergebnisauswertung zu zentralisieren. Bitte die Dokumentationslinks
 	 * in der Klasse [DiceActivityViewModel] beachten
 	 */
-	private lateinit var diceActivityViewModel: DiceActivityViewModel;
+	private lateinit var diceActivityViewModel: DiceActivityViewModel
 	//endregion
 
 	//region 2. Lebenszyklus
@@ -70,7 +68,10 @@ class DiceActivity : AppCompatActivity() {
 		this.setContentView(R.layout.dice_activity_layout)
 
 		//2.ViewModel generieren
-		this.diceActivityViewModel = ViewModelProvider(this).get(DiceActivityViewModel::class.java)
+//		this.diceActivityViewModel by viewModels()
+
+//		val mode: DiceActivityViewModel by viewModels()
+//		DiceActivityViewModel.context = this.application
 
 		//3. Zu ueberwachenden Werte des View Models registrieren
 		this.diceActivityViewModel.currentSetOfDice.observe(
@@ -146,4 +147,5 @@ class DiceActivity : AppCompatActivity() {
 		}
 
 	}
+
 }

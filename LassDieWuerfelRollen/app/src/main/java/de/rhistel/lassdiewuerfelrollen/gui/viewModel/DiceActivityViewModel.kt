@@ -4,9 +4,12 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import de.rhistel.lassdiewuerfelrollen.R
 import de.rhistel.lassdiewuerfelrollen.logic.DiceHelper
 import de.rhistel.lassdiewuerfelrollen.settings.DICE_VIEW_MODEL_TAG
+import kotlinx.coroutines.Dispatchers
 
 /**
  * ViewModel welches in der [DiceActivity] registriert und genutzt wird.
@@ -27,8 +30,9 @@ import de.rhistel.lassdiewuerfelrollen.settings.DICE_VIEW_MODEL_TAG
  * Siehe auch:
  * https://developer.android.com/jetpack/androidx/releases/lifecycle#kotlin
  * https://developer.android.com/reference/androidx/lifecycle/ViewModel
+ * https://developer.android.com/topic/libraries/architecture/viewmodel
  */
-class DiceActivityViewModel(app: Application) : AndroidViewModel(app) {
+class DiceActivityViewModel() : ViewModel() {
 
 	/**
 	 * [MutableLiveData] - [String] Diese Liste enthaelt das textliche Ergebnis der Wurfauswertung
@@ -43,8 +47,15 @@ class DiceActivityViewModel(app: Application) : AndroidViewModel(app) {
 	/**
 	 * Arbeitsreferenz auf die aktuelle Activity
 	 */
-	private val context = app
-
+	companion object {
+		var context : Application
+			get() {
+				return context
+			}
+			set(value) {
+			context = value
+		}
+	}
 
 	init {
 
@@ -54,7 +65,7 @@ class DiceActivityViewModel(app: Application) : AndroidViewModel(app) {
 		this.currentRollResult.value = context.getString(R.string.strRollTheDiceToStart)
 
 		//Standardwerte der Wuerfel
-		this.currentSetOfDice.value = this.context.resources.getIntArray(R.array.defaultSetOfDice)
+		this.currentSetOfDice.value = context.resources.getIntArray(R.array.defaultSetOfDice)
 	}
 
 	/**
@@ -67,5 +78,17 @@ class DiceActivityViewModel(app: Application) : AndroidViewModel(app) {
 
 		//2. Ergbnis auswerten und setzen
 		currentRollResult.value = DiceHelper.evaluateDice(context, currentSetOfDice.value)
+	}
+}
+
+/**
+ * Factory for [DiceActivityViewModel].
+ */
+object DiceActivityViewModelFactory : ViewModelProvider.Factory {
+
+
+	override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+		@Suppress("UNCHECKED_CAST")
+		return DiceActivityViewModel() as T
 	}
 }

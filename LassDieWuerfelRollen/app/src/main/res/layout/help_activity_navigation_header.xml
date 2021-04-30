@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/nav_header_height"
+    android:background="@color/teal_700"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtvNavigationHeader"
+        android:text="@string/app_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:gravity="bottom|center"/>
+
+    <LinearLayout
+        android:id="@+id/linLayoutHeaderDice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/containerPadding"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imgvHeaderDieOne"
+            android:layout_width="@dimen/headerDieSize"
+            android:layout_height="@dimen/headerDieSize"
+            android:layout_margin="@dimen/headerDieMargin"
+            android:src="@drawable/six_pips"/>
+
+        <ImageView
+            android:id="@+id/imgvHeaderDieTwo"
+            android:layout_width="@dimen/headerDieSize"
+            android:layout_height="@dimen/headerDieSize"
+            android:layout_margin="@dimen/headerDieMargin"
+            android:src="@drawable/six_pips"/>
+
+        <ImageView
+            android:id="@+id/imgvHeaderDieThree"
+            android:layout_width="@dimen/headerDieSize"
+            android:layout_height="@dimen/headerDieSize"
+            android:layout_margin="@dimen/headerDieMargin"
+            android:src="@drawable/six_pips"/>
+
+        <ImageView
+            android:id="@+id/imgvHeaderDieFour"
+            android:layout_width="@dimen/headerDieSize"
+            android:layout_height="@dimen/headerDieSize"
+            android:layout_margin="@dimen/headerDieMargin"
+            android:src="@drawable/six_pips"/>
+
+        <ImageView
+            android:id="@+id/imgvHeaderDieFive"
+            android:layout_width="@dimen/headerDieSize"
+            android:layout_height="@dimen/headerDieSize"
+            android:layout_margin="@dimen/headerDieMargin"
+            android:src="@drawable/six_pips"/>
+    </LinearLayout>
+</LinearLayout>
