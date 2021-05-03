@@ -8,6 +8,7 @@ const val CURRENT_ROLL_RESULT = "currentRollResult"
 
 const val CONFIG_CHANGE = "configChange"
 
+
 const val FIVE_OF_A_KIND = 5
 const val FOUR_OF_A_KIND = 4
 const val THREE_OF_KIND = 3

@@ -1,6 +1,7 @@
 package de.rhistel.lassdiewuerfelrollen.gui.viewModel
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -44,20 +45,15 @@ class DiceActivityViewModel() : ViewModel() {
 	 */
 	val currentSetOfDice = MutableLiveData<IntArray>()
 
-	/**
-	 * Arbeitsreferenz auf die aktuelle Activity
-	 */
-	companion object {
-		var context : Application
-			get() {
-				return context
-			}
-			set(value) {
-			context = value
-		}
-	}
 
-	init {
+	/**
+	 * Intialisiert das Wurferergebnis und die Wuerfel
+	 * beim Starten der Activity
+	 */
+	fun initCurrentSetOfDiceAndRollResult(context: Context) {
+
+		//Context merken
+
 
 		Log.i(DICE_VIEW_MODEL_TAG, "ViewModel created")
 
@@ -72,23 +68,12 @@ class DiceActivityViewModel() : ViewModel() {
 	 * Diese Funktion Wuerfelt und triggert
 	 * gleich im Anschluss das Auswerten des Ergebnisses
 	 */
-	fun rollAndEvaluateDice() {
+	fun rollAndEvaluateDice(context : Context) {
 		//1. Wuerfeln
-		currentSetOfDice.value = DiceHelper.rollDice()
+		this.currentSetOfDice.value = DiceHelper.rollDice()
 
 		//2. Ergbnis auswerten und setzen
-		currentRollResult.value = DiceHelper.evaluateDice(context, currentSetOfDice.value)
+		this.currentRollResult.value = DiceHelper.evaluateDice(context, currentSetOfDice.value)
 	}
 }
 
-/**
- * Factory for [DiceActivityViewModel].
- */
-object DiceActivityViewModelFactory : ViewModelProvider.Factory {
-
-
-	override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-		@Suppress("UNCHECKED_CAST")
-		return DiceActivityViewModel() as T
-	}
-}

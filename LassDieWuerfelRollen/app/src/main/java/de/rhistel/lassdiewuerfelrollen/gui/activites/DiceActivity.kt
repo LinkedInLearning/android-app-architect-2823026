@@ -68,12 +68,10 @@ class DiceActivity : AppCompatActivity() {
 		this.setContentView(R.layout.dice_activity_layout)
 
 		//2.ViewModel generieren
-//		this.diceActivityViewModel by viewModels()
+		this.diceActivityViewModel = ViewModelProvider(this).get(DiceActivityViewModel::class.java)
 
-//		val mode: DiceActivityViewModel by viewModels()
-//		DiceActivityViewModel.context = this.application
 
-		//3. Zu ueberwachenden Werte des View Models registrieren
+		//3. Zu ueberwachenden Werte des View Models in der Activity registrieren
 		this.diceActivityViewModel.currentSetOfDice.observe(
 			this,
 			Observer { this.showCurrentSetOfDiceAndResultOnGui(it) })
@@ -82,27 +80,37 @@ class DiceActivity : AppCompatActivity() {
 			this,
 			Observer { txtvRollResult.text = it })
 
+		//4. Auswerten ob es eine Reorientierung gab oder nicht
 		val configChange = savedInstanceState?.getBoolean(CONFIG_CHANGE)
 			?: false
 
 		/*
-		 * Wenn eine Reorientuerung stattgefunden hat
-		 * saveInstanceState nutzen um das zu checken
-		 * Die Daten werden weiterhin vom ViewModel gehandelt
+		 * Wenn keine eine Reorientuerung statt gefunden hat
+		 * wurde die Actvity das erste mal gestartet und es werden die
+		 * Standardwerte fuer das Wurfergebnis und der Wuerfel.
+		 * eingetragen.
+		 *
+		 * Bei Reorierntierung stehen die letzen Werte automatisch im [DiceActivityViewModel]
+		 * welches druch die Observer oberhalb mit der Activity verbunden ist.
+		 *
 		 */
 		if (configChange.not()) {
-			this.diceActivityViewModel.rollAndEvaluateDice()
+			this.diceActivityViewModel.initCurrentSetOfDiceAndRollResult(this)
 		}
 
-		//4. Listener zuweisen Wuerfeln ist jetzt im ViewModel
-		this.btnRollTheDice.setOnClickListener { this.diceActivityViewModel.rollAndEvaluateDice() }
+		//45 Listener zuweisen Wuerfeln ist jetzt im ViewModel
+		this.btnRollTheDice.setOnClickListener { this.diceActivityViewModel.rollAndEvaluateDice(this) }
 
 
 	}
 
 	/**
-	 * Merkt sich die aktuellen GuiDaten
-	 * wird automatisch von Android aufgerufen
+	 * Setzt ein Flag das eine Reorientierung
+	 * vorgenommen wurde. Die GUI-Daten wurden beim
+	 * ersten Start der Activity in das ViewModel eingetragen
+	 * und die Aenderung beim Wuerfeln werden autmatisch uebernommen.
+	 *
+	 * @param outState : [Bundle] : Map die sich Daten der Activity merkt.
 	 */
 	override fun onSaveInstanceState(outState: Bundle) {
 
