@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
 
+        <!-- Die Eigenschaft parentActivityName verweist auf eine uebergeordnete Activity.        -->
         <activity
             android:name=".gui.activites.DiceActivity"
             android:parentActivityName=".gui.activites.MainActivity" />

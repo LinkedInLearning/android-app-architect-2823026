@@ -12,7 +12,8 @@ import de.rhistel.lassdiewuerfelrollen.gui.observer.MainActivityLifecycleObserve
 /**
  * Einstiegspunkt in die App.
  * Sie wird automatisch von Android gestartet.
- *
+ * Die MainActivity ist im AndroidManifest.xml
+ * als ParentActivity in der [DiceActivity] eingetragen worden.
  */
 class MainActivity : AppCompatActivity() {
 
