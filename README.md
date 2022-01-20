@@ -32,7 +32,6 @@ Dieses Problem lösen Sie wie folgt:
 1. Um diese Übungsdateien nutzen zu können, müssen Sie folgendes installiert haben:
    - [list of requirements for course]
 2. Klonen Sie das Repository in Ihre lokale Maschine unter Verwendung von terminal (Mac), CMD (Windows) oder ein anderes Werkzeug mit grafischer Bedienoberfläche wie SourceTree.
-3. [Course-specific instructions]
 
 ### Autor
 
