@@ -42,4 +42,4 @@ _Fachinformatiker, Dozent_
 Sehen Sie sich andere Kurse des Autors auf [LinkedIn Learning](https://www.linkedin.com/in/rudolfkasper) an.
 
 [lil-course-url]: https://www.linkedin.com/learning/android-apps-entwickeln-die-architektur-einer-app-mit-kotlin/eine-komplette-android-app-kennenlernen-und-verstehen
-[lil-thumbnail-url]: https://media-exp1.licdn.com/dms/image/C560DAQFUBfUuq8AO7Q/learning-public-crop_675_1200/0/1641816410220?e=1646956800&v=beta&t=F3Wyq7WIW0tJkrHwrt19nS9Esx3cyqCbX7H3ORKMF44
+[lil-thumbnail-url]: https://cdn.lynda.com/course/2823026/2823026-1641808280255-16x9.jpg
